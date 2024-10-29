@@ -34,7 +34,6 @@ public class LeaveTypesService(ApplicationDbContext context, IMapper mapper) : I
             context.LeaveTypes.Remove(data);
             await context.SaveChangesAsync();
         }
-
     }
 
     public async Task EditAsync(LeaveTypeEditVM model)
@@ -50,8 +49,6 @@ public class LeaveTypesService(ApplicationDbContext context, IMapper mapper) : I
         context.Add(leaveType);
         await context.SaveChangesAsync();
     }
-
-
 
     public async Task<bool> LeaveTypeExistsAsync(Guid? id = null, string? name = null)
     {
