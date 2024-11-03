@@ -17,20 +17,20 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             new IdentityRole 
             {
                 Id = "8efad8c1-bd44-485d-a9a5-302fe64a485e",
-                Name = "Employee",
-                NormalizedName = "EMPLOYEE",
+                Name = Common.Roles.Employee,
+                NormalizedName = Common.Roles.Employee.ToUpper(),
             }, 
             new IdentityRole 
             {
                 Id = "472e7cb5-daff-46e1-b1c3-7b4e4b9b9286",
-                Name = "Supervisor",
-                NormalizedName = "SUPERVISOR",
+                Name = Common.Roles.Supervisor,
+                NormalizedName = Common.Roles.Supervisor.ToUpper(),
             },
             new IdentityRole 
             {
                 Id = "0af56abf-77c1-49f0-bbb0-1cf91f842414",
-                Name = "Administrator",
-                NormalizedName = "ADMINISTRATOR",
+                Name = Common.Roles.Administrator,
+                NormalizedName = Common.Roles.Administrator.ToUpper(),
             });
 
         var hasher = new PasswordHasher<ApplicationUser>();

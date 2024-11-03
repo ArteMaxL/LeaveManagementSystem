@@ -2,23 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace LeaveManagementSystem.Web.Areas.Identity.Pages.Account
 {
@@ -130,7 +123,7 @@ namespace LeaveManagementSystem.Web.Areas.Identity.Pages.Account
 
             RoleNames = await _roleManager.Roles
                 .Select(r => r.Name)
-                .Where(r => r != "Administrator")
+                .Where(r => r != Roles.Administrator)
                 .ToArrayAsync();             
         }
 
@@ -155,9 +148,9 @@ namespace LeaveManagementSystem.Web.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    if (Input.RoleName == "Supervisor")
+                    if (Input.RoleName == Roles.Supervisor)
                     {
-                        await _userManager.AddToRolesAsync(user, ["Employee", "Supervisor"]);
+                        await _userManager.AddToRolesAsync(user, [Roles.Employee, Roles.Supervisor]);
                     }
                     else
                     {
@@ -196,7 +189,7 @@ namespace LeaveManagementSystem.Web.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             RoleNames = await _roleManager.Roles
                 .Select(r => r.Name)
-                .Where(r => r != "Administrator")
+                .Where(r => r != Roles.Administrator)
                 .ToArrayAsync();
 
             return Page();
